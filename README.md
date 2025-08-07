@@ -64,7 +64,7 @@ Even though public access is blocked at the S3 level, the image can still be acc
 ##  Project Workflow
 
  Step-by-Step Guide
-🔹 Step 1: Create S3 Bucket
+## Step 1: Create S3 Bucket
 Open AWS S3 Console → Click Create Bucket
 
 Set a unique name (e.g., secure-image-hosting)
@@ -72,8 +72,10 @@ Set a unique name (e.g., secure-image-hosting)
 Leave default settings or enable versioning
 
 Upload the image beach.png to the bucket
+![WhatsApp Image 2025-08-06 at 16 45 03_77e286c4](https://github.com/user-attachments/assets/9418e227-bb77-4212-86a0-24e9ea520a29)
 
-🔹 Step 2: Block Public Access
+
+## Step 2: Block Public Access
 Go to the Permissions tab in your bucket
 
 Ensure Block all public access is enabled
@@ -81,8 +83,11 @@ Ensure Block all public access is enabled
 No public bucket policies or ACLs should exist
 
 Test: Accessing https://<bucket-name>.s3.amazonaws.com/beach.png should show Access Denied
+![WhatsApp Image 2025-08-06 at 16 48 51_f33c5280](https://github.com/user-attachments/assets/63093f19-1d59-43ab-b368-934b4dac180d)
 
-🔹 Step 3: Create CloudFront Distribution
+
+
+## Step 3: Create CloudFront Distribution
 Open CloudFront Console → Click Create Distribution
 
 For Origin domain, select the S3 bucket
@@ -92,8 +97,10 @@ Enable Origin Access Control (OAC)
 Click Create Distribution
 
 Wait ~10 minutes for deployment
+![WhatsApp Image 2025-08-06 at 16 50 00_9e7ebeba](https://github.com/user-attachments/assets/812afee7-90cb-4eb9-b203-94ced7c2c4e1)
 
-🔹 Step 4: Allow CloudFront to Access S3
+
+ ## Step 4: Allow CloudFront to Access S3
 CloudFront creates an OAC (Origin Access Control)
 
 Go back to your S3 bucket and confirm that:
@@ -102,16 +109,16 @@ The OAC IAM role is allowed to read from the bucket
 
 Use the suggested bucket policy or create your own
 
-🔹 Step 5: Test CloudFront Delivery
+## Step 5: Test CloudFront Delivery
 Visit:
 
-arduino
-Copy
-Edit
-https://<your-distribution-id>.cloudfront.net/beach.png
-✅ You should see the image load successfully!
 
-✅ Access Verification
+https://<your-distribution-id>.cloudfront.net/beach.png
+ You should see the image load successfully!
+ ![WhatsApp Image 2025-08-06 at 16 50 51_926d0a75](https://github.com/user-attachments/assets/cd566490-cb8e-4dfd-8704-2c22037f8828)
+
+
+ Access Verification
 Access Method	Result
 https://<bucket>.s3.amazonaws.com/beach.png	❌ Access Denied
 https://<distribution>.cloudfront.net/beach.png	✅ Image Loads
